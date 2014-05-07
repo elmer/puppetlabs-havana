@@ -12,7 +12,6 @@ class havana::profile::nova::api {
     admin_address    => hiera('havana::controller::address::management'),
     internal_address => hiera('havana::controller::address::management'),
     region           => hiera('havana::region'),
-    cinder           => true,
   }
 
   include ::havana::common::nova

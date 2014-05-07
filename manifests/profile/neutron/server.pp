@@ -13,9 +13,10 @@ class havana::profile::neutron::server {
   }
 
   class { '::neutron::server':
-    auth_host     => hiera('havana::controller::address::management'),
-    auth_password => hiera('havana::neutron::password'),
-    enabled       => true,
+    database_connection => $::havana::resources::connectors::neutron,
+    auth_host           => hiera('havana::controller::address::management'),
+    auth_password       => hiera('havana::neutron::password'),
+    enabled             => true,
   }
 
   include ::havana::common::neutron

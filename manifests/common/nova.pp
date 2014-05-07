@@ -13,14 +13,14 @@ class havana::common::nova ($is_compute    = false) {
   $controller_management_address = hiera('havana::controller::address::management')
 
   class { '::nova':
-    sql_connection     => $::havana::resources::connectors::nova,
-    glance_api_servers => "http://${storage_management_address}:9292",
-    memcached_servers  => ["${controller_management_address}:11211"],
-    rabbit_hosts       => [$controller_management_address],
-    rabbit_userid      => hiera('havana::rabbitmq::user'),
-    rabbit_password    => hiera('havana::rabbitmq::password'),
-    debug              => hiera('havana::debug'),
-    verbose            => hiera('havana::verbose'),
+    database_connection => $::havana::resources::connectors::nova,
+    glance_api_servers  => "http://${storage_management_address}:9292",
+    memcached_servers   => ["${controller_management_address}:11211"],
+    rabbit_hosts        => [$controller_management_address],
+    rabbit_userid       => hiera('havana::rabbitmq::user'),
+    rabbit_password     => hiera('havana::rabbitmq::password'),
+    debug               => hiera('havana::debug'),
+    verbose             => hiera('havana::verbose'),
   }
 
   class { '::nova::api':

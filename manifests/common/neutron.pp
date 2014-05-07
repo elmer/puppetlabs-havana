@@ -28,7 +28,7 @@ class havana::common::neutron {
 
   # everyone gets an ovs plugin (TODO true?)
   class  { '::neutron::plugins::ovs':
-    sql_connection      => $::havana::resources::connectors::neutron,
+    #sql_connection      => $::havana::resources::connectors::neutron,
     tenant_network_type => 'gre',
   }
 
